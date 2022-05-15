@@ -1,0 +1,48 @@
+:root {
+  --app-corner: 35px;
+  --app-line-color: #dddddd;
+}
+.container{
+  width: 414px;
+  height: 736px;
+  margin: 10% auto;
+  border-radius: var(--app-corner);
+  box-shadow: 7px 15px 34px 5px rgb(38, 45, 150);
+}
+.img-container {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  filter: blur(35px);
+  background-image: url("../public/images/pexels-luis-quintero-2471234.jpg");
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+.header{
+  width: inherit;
+display: flex;
+flex-direction: column;
+}
+.title{
+  font-size: 36px;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 43px;
+  line-height: 56px;
+  margin-left: 50px;
+  margin-top: 50px;
+  color: #041955;
+  text-shadow: 3px 3px 5px #041955;
+}
+.img_plus {
+  cursor: pointer;
+}
+.img_plus:hover {
+  cursor: pointer;
+  transition: transform 0.7s ease-in-out;
+  transform: rotate(360deg);
+}
+
