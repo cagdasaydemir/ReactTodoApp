@@ -141,19 +141,8 @@
   height: 40px;
   font-size: 30px;
 }
-.todo-modal-container {
-  display: none;
-  position: absolute;
-  height: inherit;
-  width: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(196, 102, 255, 0.226) 30%,
-    rgba(59, 0, 95, 0.712) 70%
-  );
-  border-radius: var(--app-corner);
-}
-.todo-modal-container .show {
+
+.todo-modal-container{
   display: flex;
   position: absolute;
   height: inherit;
