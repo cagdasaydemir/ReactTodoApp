@@ -1,25 +1,29 @@
-import React from 'react'
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 
 const TodoItem = () => {
   return (
-    <li className='todo-item' data-id='8334'>
-    <div className='todo-item-check' data-id='8334' >
-        <div className='checkBox'> <FontAwesomeIcon icon={faCheck}/> </div>
-    </div>
-    <div className='todo-item-details'>
-        <span className='todo-item-title'>cxcfgvds</span>
-        <span className='todo-item-descript'>dsfdsf</span>
-    </div>
-    <div className='delete-container'>
-        <div className='delete-todo' data-id='8334'>
-        <FontAwesomeIcon className='fa-trash-can' icon={faTrashCan}/>
+    <div className="todo-item">
+      <div className="check-btn">
+        <FontAwesomeIcon icon={faSquareCheck} />
+      </div>
+      <div className="todo-item-details">
+        <div className="details-title">
+          {" "}
+          lorem lorem lorlorem lorem lorem loremlorem lorem lorem loremlorem
+          lorem lorem loremem lorem{" "}
         </div>
+        <div className="details-desc">
+          lorem lorem lorem lorem lorem loremlorem lorem lorem loremlorem lorem
+          lorem loremlorem lorem
+        </div>
+      </div>
+      <div className="delete-btn">
+        <FontAwesomeIcon icon={faTrashCan} />
+      </div>
     </div>
-</li>
-
-  )
-}
+  );
+};
 
 export default TodoItem;
