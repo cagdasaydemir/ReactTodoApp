@@ -91,7 +91,25 @@
 .todo-item:hover {
   border: 3px solid #4b0455;
 }
+.todo-item.completed {
+ 
+  .check-btn {
+    height: 21.88px;
+    width: 21.88px;
+    
+    color: rgba(255, 0, 225, 0.642);
+    margin-left: 20px;
+    background-color: #a509af;
+    border-radius: 2px;
+    .check-icon{
+      display: none;
+     
+    }
+  }
+  
+}
 .check-btn {
+  
   cursor: pointer;
   font-size: 25px;
   color: rgba(255, 0, 225, 0.642);

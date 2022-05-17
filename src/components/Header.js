@@ -7,7 +7,6 @@ function Header({setShow}) {
     <section className="header">
       <span className="header-title">TODO</span>
       <FontAwesomeIcon
-        
         className="add-btn"
         icon={faCirclePlus}
         onClick={() => {setShow(true)}}

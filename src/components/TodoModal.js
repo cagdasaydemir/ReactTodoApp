@@ -25,7 +25,7 @@ const TodoModal = ({ setShow }) => {
       <Formik
         initialValues={{ title: "", desc: "" }}
         validationSchema={todoFormValidationSchema}
-        onSubmit={(values, { setSubmitting }) => {}}
+        onSubmit={(values, { setSubmitting, resetForm }) => {}}
       >
         {({ isSubmitting, handleSubmit, errors, touched, handleChange }) => (
           <Form id="todoForm" className="todo-form">
