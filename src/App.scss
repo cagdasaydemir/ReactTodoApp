@@ -87,29 +87,40 @@
   margin-top: 10px;
   border: 3px solid var(--app-line-color);
   border-radius: var(--app-corner);
-}
-.todo-item:hover {
-  border: 3px solid #4b0455;
-}
-.todo-item.completed {
- 
+  text-decoration: none;
   .check-btn {
     height: 21.88px;
     width: 21.88px;
-    
+
     color: rgba(255, 0, 225, 0.642);
     margin-left: 20px;
     background-color: #a509af;
     border-radius: 2px;
-    .check-icon{
+    .check-icon {
       display: none;
-     
     }
   }
-  
+}
+
+.todo-item:hover {
+  border: 3px solid #4b0455;
+}
+.todo-item.completed {
+  text-decoration: line-through;
+  color: white;
+  .check-btn {
+    height: 21.88px;
+    width: 21.88px;
+
+    margin-left: 20px;
+    background-color: #ffffff00;
+    margin-bottom: 3px;
+    .check-icon {
+      display: flex;
+    }
+  }
 }
 .check-btn {
-  
   cursor: pointer;
   font-size: 25px;
   color: rgba(255, 0, 225, 0.642);
@@ -141,6 +152,7 @@
   }
 }
 .delete-btn {
+ flex-grow: auto;
   cursor: pointer;
   background-color: rgba(255, 0, 225, 0.642);
   color: white;
@@ -160,7 +172,7 @@
   font-size: 30px;
 }
 
-.todo-modal-container{
+.todo-modal-container {
   display: flex;
   position: absolute;
   height: inherit;
@@ -257,4 +269,15 @@
       margin-left: 15px;
     }
   }
+}
+
+.emptyTodoList{
+  align-self: center;
+  margin-top: 200px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:#f896ffbc;
+  text-shadow: 3px 3px 5px #a560aa89;
 }

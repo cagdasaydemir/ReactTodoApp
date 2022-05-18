@@ -5,11 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 let todoFormValidationSchema = yup.object().shape({
-  title: yup.string().required("Please fill all the spaces"),
+  title: yup.string().required("Please type a title"),
   desc: yup.string(),
 });
 
-const TodoModal = ({ setShow }) => {
+const uniqueIdGenerator = ()=> {
+  return Math.floor(Math.random() * 100000 +1);
+};
+
+const TodoModal = ({ setShow, todoList, setTodoList  }) => {
+
+const addTodoItemToList = (newItem) =>{
+  setTodoList([...todoList, newItem]);
+};
+
   useEffect(() => {
     const todoModalEl = document.querySelector("#todoModalEl");
 
@@ -25,7 +34,12 @@ const TodoModal = ({ setShow }) => {
       <Formik
         initialValues={{ title: "", desc: "" }}
         validationSchema={todoFormValidationSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {}}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          const newItem = { id:uniqueIdGenerator(), isComplete: false, ...values};
+          addTodoItemToList(newItem);
+          setShow(false);
+          document.getElementById("todoForm").reset();
+        }}
       >
         {({ isSubmitting, handleSubmit, errors, touched, handleChange }) => (
           <Form id="todoForm" className="todo-form">
@@ -41,13 +55,12 @@ const TodoModal = ({ setShow }) => {
               onChange={handleChange}
             ></textarea>
             {errors.desc && touched.desc ? <small>{errors.desc}</small> : null}
+
+
             <button
               type="submit"
               className="create-btn"
               disabled={isSubmitting}
-              onClick={() => {
-                handleSubmit();
-              }}
             >
               <FontAwesomeIcon
                 className=""
