@@ -1,6 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faSquareCheck,faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+
+
 
 function Header({setShow}) {
   return (

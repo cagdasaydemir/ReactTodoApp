@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import * as yup from "yup";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+
+
 
 let todoFormValidationSchema = yup.object().shape({
   title: yup.string().required("Please type a title"),
   desc: yup.string(),
 });
 
-const uniqueIdGenerator = ()=> {
-  return Math.floor(Math.random() * 100000 +1);
-};
-
-const TodoModal = ({ setShow, todoList, setTodoList  }) => {
+const TodoModal = ({ setShow, getTodos}) => {
 
 const addTodoItemToList = (newItem) =>{
-  setTodoList([...todoList, newItem]);
-};
+  // setTodoList([...todoList, newTodoItem]);
+  axios.post("Todo", newItem).then((res)=> console.log(res)).finally(()=> {getTodos()});
+}
 
   useEffect(() => {
     const todoModalEl = document.querySelector("#todoModalEl");
 
     todoModalEl.addEventListener("click", (e) => {
-      if (e.target.id == "todoModalEl") setShow(false);
-
-      return {};
-    });
+     if (e.target.id == "todoModalEl") setShow(false);
   });
-
+});
   return (
     <div id="todoModalEl" className="todo-modal-container">
       <Formik
-        initialValues={{ title: "", desc: "" }}
+        initialValues={{ title: "", description: "" }}
         validationSchema={todoFormValidationSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          const newItem = { id:uniqueIdGenerator(), isComplete: false, ...values};
+          const newItem = {...values , isComplete: false };
+          
           addTodoItemToList(newItem);
           setShow(false);
           document.getElementById("todoForm").reset();
@@ -44,18 +44,15 @@ const addTodoItemToList = (newItem) =>{
         {({ isSubmitting, handleSubmit, errors, touched, handleChange }) => (
           <Form id="todoForm" className="todo-form">
             <div className="todo-bg-container"></div>
-            <input name="title" placeholder="Title" onChange={handleChange} />
-            {errors.title && touched.title ? (
-              <small>{errors.title}</small>
-            ) : null}
+            <input id="task-title" name="title" placeholder="Title" onChange={handleChange} />
+
 
             <textarea
-              name="desc"
+              id="task-description"
+              name="description"
               placeholder="Description"
               onChange={handleChange}
             ></textarea>
-            {errors.desc && touched.desc ? <small>{errors.desc}</small> : null}
-
 
             <button
               type="submit"
@@ -72,7 +69,7 @@ const addTodoItemToList = (newItem) =>{
         )}
       </Formik>
     </div>
-  );
-};
+  )
+}
 
 export default TodoModal;

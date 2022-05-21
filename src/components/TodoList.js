@@ -1,31 +1,42 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faSquareCheck,faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 
-const TodoList = ({ todoList, setTodoList }) => {
+
+const TodoList = ({ todoList, getTodos }) => {
  
     const removeTask = (todoId) => {
-      const filteredItems = todoList
-        .filter(x => x.id != todoId);
-      setTodoList(filteredItems);
+      axios.delete("Todo?id=" + todoId)
+      .then(res => {
+        window.alert(`Yayy"${res.data.title}" deleted !`);
+      }).finally(() => {
+        getTodos();
+      });
     }
-    const completeTask = (e) => {
-      const findedTodoIndex = todoList
-        .findIndex(x => x.id == e.currentTarget.dataset.id)
-      if (findedTodoIndex != -1) {
-        e.currentTarget.parentNode.classList.toggle("completed")
-       
-        todoList[findedTodoIndex].isComplete = true;
-        setTodoList(todoList);
-      }
-    }
+    const completeTask = (todoId) => {
+      axios.patch("Todo?id=" + todoId)
+      .then(res => {
+        window.alert(`Yayy "${res.data.title}" updated !`);
+      }).finally(() => {
+        getTodos();
+      });
+      };
+      // const updateTask = (todoId) => {
+      //   axios.get("Todo?id=" + todoId)
+      //   .then(res => getUpdatedTodo(res.data.title))
+      //   .then(setShow(true))
+      //   .then(setUpdate(true));
+      // };
+    
 
   return (
     <section className="todo-list-container">
       {todoList.map((todoItem, index) => {
         return <div key={index} data-id={todoItem.id} className={"todo-item " + (todoItem.isComplete ? "completed" : "")}>
-      <div data-id={todoItem.id} className="check-btn" onClick={ (e) => {completeTask(e)}}>
+      <div data-id={todoItem.id} className="check-btn" onClick={ (e) => {completeTask(todoItem.id)}}>
         <FontAwesomeIcon icon={faSquareCheck} className="check-icon"/>
       </div>
       <div className="todo-item-details">
@@ -33,15 +44,15 @@ const TodoList = ({ todoList, setTodoList }) => {
           {todoItem.title}
         </div>
         <div className="details-desc">
-        {todoItem.desc}
+        {todoItem.description}
         </div>
       </div>
       <div className="delete-btn" onClick={() => { removeTask(todoItem.id) }} >
         <FontAwesomeIcon icon={faTrashCan} />
       </div>
-    </div>
-})}
-</section>);
-};
+    </div>}
+)}</section>);
+
+      };
 
 export default TodoList;
