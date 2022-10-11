@@ -12,13 +12,15 @@
 .main-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .container {
   position: absolute;
   display: flex;
   width: 400px;
   height: 750px;
-  margin: 5rem auto;
+  margin: auto;
   border-radius: var(--app-corner);
   box-shadow: 1px 3px 4px var(--app-line-color);
 }
